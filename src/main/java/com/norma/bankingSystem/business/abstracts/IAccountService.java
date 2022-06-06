@@ -13,4 +13,6 @@ public interface IAccountService {
     Account add(Account account);
 
     Map<String, Boolean> delete(Long id);
+
+
 }

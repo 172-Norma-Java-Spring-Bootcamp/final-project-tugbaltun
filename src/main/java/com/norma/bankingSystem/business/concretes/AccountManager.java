@@ -5,14 +5,12 @@ import com.norma.bankingSystem.dataAccess.AccountRepository;
 import com.norma.bankingSystem.dataAccess.CardRepository;
 import com.norma.bankingSystem.dataAccess.CreditCardRepository;
 import com.norma.bankingSystem.dataAccess.DebitCardRepository;
-import com.norma.bankingSystem.entity.model.Account;
-import com.norma.bankingSystem.entity.model.Card;
-import com.norma.bankingSystem.entity.model.CreditCard;
-import com.norma.bankingSystem.entity.model.DebitCard;
+import com.norma.bankingSystem.entity.model.*;
 import com.norma.bankingSystem.exception.ApiErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,6 +31,9 @@ public class AccountManager implements IAccountService {
     @Autowired
     private DebitCardRepository debitCardRepository;
 
+
+
+    LocalDateTime currentDate = LocalDateTime.now();
 
     @Override
     public Account getById(Long id) {
@@ -68,7 +69,6 @@ public class AccountManager implements IAccountService {
         String accountNumber = "TR370001"+number+"75";
         account.setAccount_number(accountNumber);
 
-        LocalDateTime currentDate = LocalDateTime.now();
         account.setDate_of_creation(currentDate);
 
         if(account.getName().isEmpty() || account.getAccount_type().isEmpty()){
@@ -81,6 +81,8 @@ public class AccountManager implements IAccountService {
     public Map<String, Boolean> delete(Long id) {
         return null;
     }
+
+
 
 
     public CreditCard createCreditCard(Long card_id){
